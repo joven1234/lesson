@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div ng-controller="footerCtrl as vm" id="footer">
+        <p id="heading" class="text-center">
+            LESSONS BY GRADE
+        </p>
+        <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="assets/img/logo_footer.png">
+                    <br>
+                    <p id="share-lesson" class="small">
+                        Share My Lesson is a destination for educators who dedicate their time and professional expertise to
+                        provide the best education for students everywhere. Share My Lesson members contribute content,
+                        share ideas, get educated on the topics that matter, online, 24/7. We issue Creative Commons licenses,
+                        and we do not share our members' private data with anyone.
+                    </p>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div ng-repeat="(grade, subjects) in vm.data" class="col-md-6">
+                            <h3 id="grade">
+                                {{grade | uppercase}}
+                            </h3>
+                            <p class="small" ng-repeat="subject in subjects">
+                                <a href="#!view/resources?grade={{grade}}&subject={{subject}}">
+                                    {{subject}}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

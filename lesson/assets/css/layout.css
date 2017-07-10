@@ -155,6 +155,12 @@ div#testimonial{
     padding: 100px;
 }
 
+@media screen and (max-width: 768px){
+    div#testimonial{
+        height: auto;
+    }
+}
+
 div#testimonial h3{
     font-weight: bold;
     margin-top: 0;
