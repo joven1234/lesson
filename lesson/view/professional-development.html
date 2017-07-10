@@ -1,0 +1,41 @@
+<div ng-include="'navbar.html'"></div>
+
+<div ng-controller="proDevelopmentCtrl as vm" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="#">HOME</a></li>
+                <li class="active">PROFESSIONAL DEVELOPMENT RESOURCES</li>
+            </ol>
+            <br>
+            <h2 class="title">
+                PROFESSIONAL DEVELOPMENT RESOURCES
+            </h2>
+            <hr>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-repeat="(grade, subjects) in vm.data" class="well">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="diff-height" src="assets/img/{{'img_reasources_' + ($index + 1) + '_0.jpg'}}">
+                    </div>
+                    <div class="media-body">
+                        <h4>
+                            {{grade | uppercase}}
+                        </h4>
+                        <div ng-repeat="subject in subjects" class="col-md-6">
+                            <p>
+                                <a ng-href="#!view/resources?grade={{grade}}&subject={{subject}}">
+                                    {{subject + " (PD)"}}
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

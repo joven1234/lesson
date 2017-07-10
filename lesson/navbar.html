@@ -1,0 +1,80 @@
+<nav ng-controller="navbarCtrl as vm" class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="assets/img/lesson_logo.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle">
+                        GRADES
+                        <span class="caret"></span>
+                        <ul class="dropdown-menu text-center">
+                            <li><a href="#!view/grades/pre-school">EARLY CHILDHOOD</a></li>
+                            <li><a href="#!view/grades/early-elementary">EARLY ELEMENTARY</a></li>
+                            <li><a href="#!view/grades/late-elementary">LATE ELEMENTARY</a></li>
+                            <li><a href="#!view/grades/middle-school">MIDDLE SCHOOL</a></li>
+                            <li><a href="#!view/grades/high-school">HIGH SCHOOL</a></li>
+                        </ul>
+                    </a>
+                    <p class="nav-animation"></p>
+                </li>
+                <li>
+                    <a href="#!view/standards">
+                        STANDARDS
+                    </a>
+                    <p class="nav-animation"></p>
+                </li>
+                <li>
+                    <a href="#!view/professional-development">
+                        PROFESSIONAL DEVELOPMENT
+                    </a>
+                    <p class="nav-animation"></p>
+                </li>
+                <li>
+                    <a href="#!view/partners">
+                        PARTNERS
+                    </a>
+                    <p class="nav-animation"></p>
+                </li>
+                <li>
+                    <a href="#!view/about-us">
+                        ABOUT US
+                    </a>
+                    <p class="nav-animation"></p>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ng-if="!vm.isLoggedIn" href="#!view/user/register">
+                        <span class="glyphicon glyphicon-user"></span>
+                        SIGN UP
+                    </a>
+                    <a ng-if="vm.isLoggedIn" href="#">
+                        <span>
+                            {{vm.user.username + "'s profile"}}
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="vm.loginModal()" ng-if="!vm.isLoggedIn" href="">
+                        <span class="glyphicon glyphicon-log-in">
+                        </span>
+                        LOGIN
+                    </a>
+                    <a ng-click="vm.userLogout()" ng-if="vm.isLoggedIn" href="">
+                        LOGOUT
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div ng-include="'login.html'"></div>
+</nav>

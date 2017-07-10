@@ -1,0 +1,177 @@
+<div ng-include="'navbar.html'"></div>
+
+<div ng-controller="resourceCtrl as vm" class="container">
+    <div class="row">
+        <h3>
+            {{vm.data.item_name}}
+        </h3>
+        <hr>
+        <div class="col-md-8">
+            <div id="resource-details">
+                <p>
+                    teatimewithtayla
+                </p>
+                <span class="small">
+                    Updated: 3 months ago
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="assets/img/{{vm.data.image}}">
+                </div>
+                <div id="description" class="col-md-6">
+                    {{vm.data.description}}
+                </div>
+            </div>
+            <br><br>
+            <div id="join-us" class="text-center">
+                <button class="btn btn-danger">
+                    JOIN US TO ACCESS THESE LESSONS
+                </button>
+            </div>
+            <br><br>
+
+            <div ng-if="vm.data.source_url != null">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>{{vm.isVideoSource ? "VIDEO SOURCE" : "PDF FILE SOURCE"}}</b>
+                    </div>
+                    <div id="source" class="panel-body">
+                        <div ng-show="vm.isYoutubeSource(vm.data.source_url)">
+                            <iframe width="100%" height="650" allowfullscreen="" src="{{vm.data.source_url | trusted}}">
+
+                            </iframe>
+                        </div>
+                        <div ng-show="!vm.isYoutubeSource(vm.data.source_url)">
+                            <div class="col-md-6">
+                                <div id="download-pdf">
+                                    <a href="assets/pdf/{{vm.data.source_url}}" download>
+                                        <span id="pdf-icon">
+                                            <img src="assets/img/pdf-icon.png">
+                                        </span>
+                                        <span id="pdf-name">
+                                            <b>{{vm.data.source_url | uppercase}}</b>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="web-source">
+                                    <span id="html-tag-icon">
+                                        <img src="assets/img/html-tag-icon.png">
+                                    </span>
+                                    <span id="item-name">
+                                        <em>
+                                            <b>{{vm.data.item_name}}</b>
+                                        </em>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div id="reviews" class="panel panel-default">
+                <div class="panel-heading">
+                    REVIEWS
+                </div>
+                <div class="panel-body">
+                    <div ng-show="!vm.data.comments && vm.data != null">
+                        No one has commented yet
+                    </div>
+                    <comments ng-repeat="c in vm.data.comments">
+
+                    </comments>
+                </div>
+                <div class="panel-footer">
+                    <div ng-if="vm.user != null">
+                        <h3>
+                            RATE THIS LESSON
+                        </h3>
+                        <br>
+                        <p>
+                            <b>RATING</b>
+                        </p>
+                        <div class="star">
+                            <span class="glyphicon glyphicon-star-empty star"></span>
+                        </div>
+                        <div class="star">
+                            <span class="glyphicon glyphicon-star-empty star"></span>
+                        </div>
+                        <div class="star">
+                            <span class="glyphicon glyphicon-star-empty star"></span>
+                        </div>
+                        <div class="star">
+                            <span class="glyphicon glyphicon-star-empty star"></span>
+                        </div>
+                        <div class="star">
+                            <span class="glyphicon glyphicon-star-empty star"></span>
+                        </div>
+                        <br><br>
+                        <form ng-submit="vm.saveComment(commentForm.$valid, vm.data.item_id)" name="commentForm" novalidate>
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea name="comment" ng-model="vm.comment" class="form-control" rows="5" id="comment" required></textarea>
+                            </div>
+                            <div class="formError" ng-show="commentForm.$submitted">
+                                <p ng-show="commentForm.comment.$error.required" class="text-danger">
+                                    Please fill out the field
+                                </p>
+                            </div>
+                            <input type="submit" value="SAVE" class="btn btn-success pull-right">
+                        </form>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="comment-login" ng-if="vm.user == null">
+                        <p>
+                            PLEASE
+                            <a ng-click="vm.loginModal()" href="">
+                                LOGIN
+                            </a>
+                            TO POST YOUR COMMENT
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="author-details" class="col-md-4">
+            <div class="text-center">
+                <img class="img-circle" src="assets/img/tea_time_with_tayla.png">
+                <h4>TEATIMEWITHTAYLA</h4>
+                <br>
+                <p class="small">
+                    Tea Time with Tayla is an entertaining and educational show for preschoolers.
+                    Episodes include nursery rhymes, kids songs, ABC's, colors, numbers, and many more!
+                </p>
+            </div>
+            <br>
+            <br>
+            <h4>
+                USER STATS
+            </h4>
+            <hr>
+            <p>
+                <span>
+                    Number of Contributions:
+                </span>
+                <span>
+                    96
+                </span>
+            </p>
+            <hr>
+            <p>
+                <span>
+                    Number of Views:
+                </span>
+                <span>
+                    31459
+                </span>
+            </p>
+            <hr>
+        </div>
+    </div>
+</div>
+
+

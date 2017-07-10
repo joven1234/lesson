@@ -1,0 +1,69 @@
+<div ng-include="'navbar.html'"></div>
+<div id="items" ng-controller="resourcesCtrl as vm" class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <h2>
+                {{vm.grade + " / " + vm.subject | uppercase}}
+            </h2>
+            <hr>
+            <h4>
+                {{vm.grade + " / " + vm.subject  + " Lessons Plans, Activities, and Teacher Resources"}}
+            </h4>
+
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    PER PAGE
+                    <p></p>
+                    <form>
+                        <div class="form-group">
+                            <label for="per-page"></label>
+                            <select class="form-control" id="per-page">
+                                <option>4</option>
+                                <option>8</option>
+                                <option>12</option>
+                                <option>16</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-9">
+                    <p>
+                        <b>
+                            {{vm.data.length + " items"}}
+                        </b>
+                    </p>
+                    <div ng-if="vm.data != null">
+                        <div ng-repeat="d in vm.data" class="well">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="assets/img/{{d.image}}">
+                                </div>
+                                <div class="media-body">
+                                    <p>
+                                        <a ng-href="#!view/resource/id/{{d.item_id}}">
+                                            {{d.item_name | uppercase}}
+                                        </a>
+                                    </p>
+                                    <span id="author">
+                                    teatimewithtayla
+                                </span>
+                                    <span>
+                                    |
+                                </span>
+                                    <span>
+                                    Updated: 3 months ago
+                                </span>
+                                    <hr style="border: 1px solid gray">
+                                    <p>
+                                        {{d.description | limitTo: 250}}...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

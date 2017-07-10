@@ -1,0 +1,55 @@
+<div class="comment-field">
+    <div id="date" class="pull-right">
+        December 2016
+    </div>
+    <div class="media">
+        <div class="media-left">
+            <img src="assets/img/comment_user_pic.jpg">
+        </div>
+        <div class="media-body">
+            <b>
+                {{c.username}}
+            </b>
+            <div class="comment">
+                {{c.name}}
+            </div>
+            <br>
+            <div ng-if="c.reply != null">
+                <div ng-repeat="r in c.reply" class="media">
+                    <div class="media-left">
+                        <img src="assets/img/comment_user_pic.jpg">
+                    </div>
+                    <div class="media-body">
+                        <b>
+                            {{r.reply_owner}}
+                        </b>
+                        <p>
+                            {{r.name}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <reply>
+    </reply>
+    <div ng-controller="replyCtrl as vm" class="reply-field" style="display: none">
+
+        <textarea ng-model="vm.reply" class="form-control" row="5">
+
+        </textarea>
+        <br>
+        <div ng-show="vm.isInvalidReply" class="replyError">
+            <p ng-show="!vm.isNotLoggedIn" class="text-danger">Reply field is required.</p>
+            <p ng-show="vm.isNotLoggedIn" class="text-danger">You must login first to post your comment.</p>
+        </div>
+
+        <h4>
+            <button ng-click="vm.saveReply(c.id)" class="btn btn-danger pull-right">
+                SAVE
+            </button>
+        </h4>
+    </div>
+    <div class="clearfix"></div>
+    <hr>
+</div>

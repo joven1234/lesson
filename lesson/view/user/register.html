@@ -1,0 +1,87 @@
+
+<div ng-include="'navbar.html'"></div>
+<div ng-controller="registerCtrl as vm" class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <ol class="breadcrumb">
+                <li><a href="">Home</a></li>
+                <li class="active">JOIN US</li>
+            </ol>
+            <div id="register">
+                <h4>
+                   FILL OUT THE FORM TO GET STARTED.
+                </h4>
+                <br><br>
+                <form ng-submit="vm.formSubmit(registerForm.$valid)" name="registerForm" novalidate>
+                    <div class="form-group">
+                        <label for="firstname">FIRST NAME *</label>
+                        <input ng-minlength="6" type="text" name="firstname" ng-model="vm.user.firstname" class="form-control" id="firstname" required>
+                    </div>
+                    <div class="formError" ng-show="registerForm.$submitted">
+                        <p class="text-danger" ng-show="registerForm.firstname.$error.required">
+                            Firstname field is required
+                        </p>
+                        <p class="text-danger" ng-show="registerForm.firstname.$error.minlength">
+                            First name must be 6 characters long.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">EMAIL ADDRESS *</label>
+                        <input type="email" name="email" ng-model="vm.user.email" class="form-control" id="email" required>
+                    </div>
+                    <div class="formError" ng-show="registerForm.$submitted">
+                        <p class="text-danger" ng-show="registerForm.email.$error.required">
+                            Email field is required
+                        </p>
+                        <p class="text-danger" ng-show="registerForm.email.$error.email">
+                            Invalid Email Address.
+                        </p>
+                        <p class="text-danger" ng-if="vm.isEmailExist">
+                            Email address already exists in our database.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">PASSWORD *</label>
+                        <input ng-minlength="6" type="password" name="password" ng-model="vm.user.password" class="form-control" id="password" required>
+                    </div>
+                    <div ng-if="!vm.isPasswordMatch" class="formError">
+                        <p class="text-danger">Password did not match. Please try again</p>
+                    </div>
+                    <div class="formError" ng-show="registerForm.$submitted">
+                        <p class="text-danger" ng-show="registerForm.password.$error.required">
+                            Password field is required
+                        </p>
+                        <p class="text-danger" ng-show="registerForm.password.$error.minlength">
+                            Password must be 6 characters long.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmpassword">CONFIRM PASSWORD *</label>
+                        <input ng-minlength="6" type="password" name="confirmpassword" ng-model="vm.user.confirmpassword"  class="form-control" id="confirmpassword" required>
+                    </div>
+                    <div class="formError" ng-show="registerForm.$submitted">
+                        <p class="text-danger" ng-show="registerForm.confirmpassword.$error.required">
+                            Confirm Password field is required
+                        </p>
+                        <p class="text-danger" ng-show="registerForm.confirmpassword.$error.minlength">
+                            Confirm Password must be 6 characters long.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-danger" value="SIGN ME UP">
+                    </div>
+                    <hr>
+                    <h4>
+                        Already have an account?
+                    </h4>
+                    <span class="glyphicon glyphicon-arrow-left">
+
+                    </span>
+                    <a ng-click="vm.loginModal()" href="">
+                        LOG ME IN
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

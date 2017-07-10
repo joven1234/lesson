@@ -1,0 +1,49 @@
+<div ng-controller="schoolCtrl as vm" class="contaniner">
+    <br><br>
+    <div class="row">
+        <div id="preschool" class="col-md-8 col-md-offset-2">
+            <h3 class="block-heading">
+                {{vm.title | uppercase}}
+            </h3>
+            <hr>
+            <br>
+            <h5 ng-show="vm.infoText != ''">
+                {{vm.infoText}}
+            </h5>
+            <br>
+            <div class="well text-center">
+                <span>
+                    Get access to thousands of lesson plans
+                </span>
+                <span>
+                    <button class="btn btn-danger">
+                        JOIN US
+                    </button>
+                </span>
+            </div>
+            <div ng-repeat="(grade, value) in vm.data">
+                <div ng-repeat="(comp, collections) in value" class="well">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="assets/img/{{collections[collections.length - 1]}}.jpg">
+                        </div>
+                        <div class="media-body">
+                            <h4>
+                                {{comp | uppercase}}
+                            </h4>
+                            <div class="row">
+                                <div ng-repeat="item in collections" class="col-md-6">
+                                    <p ng-if="$index != collections.length - 1">
+                                        <a href="#!view/resources?item={{item}}&grade={{grade}}&subject={{comp}}">
+                                            {{item}}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

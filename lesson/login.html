@@ -1,0 +1,78 @@
+<div ng-controller="loginCtrl as vm" id="comment-login-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button ng-click="vm.closeModal()" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <br>
+                <h3 class="text-center">
+                    LOGIN TO SHARE MY LESSON
+                </h3>
+                <br>
+                <form ng-submit="vm.login(loginForm.$valid)" name="loginForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div ng-if="vm.isInvalidAccount" class="alert alert-danger">
+                                <p>
+                                    Invalid username or password. Please try again
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"></label>
+                                <input placeholder="Email Address" ng-model="vm.user.email" name="email" class="form-control" type="email" id="email" required>
+                            </div>
+                            <div class="formError" ng-show="loginForm.$submitted">
+                                <p class="text-danger" ng-show="loginForm.email.$error.required">
+                                    Email field is required
+                                </p>
+                                <p class="text-danger" ng-show="loginForm.email.$error.email">
+                                    Invalid Email. Please try again
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"></label>
+                                <input placeholder="Password" ng-minlength="6" ng-model="vm.user.password" name="password" class="form-control" type="password" id="password" required>
+                            </div>
+                            <div class="formError" ng-show="loginForm.$submitted">
+                                <p class="text-danger" ng-show="loginForm.password.$error.required">
+                                    Password field is required
+                                </p>
+                                <p class="text-danger" ng-show="loginForm.password.$error.minlength">
+                                    Password field must be 6 characters long
+                                </p>
+                            </div>
+                            <br>
+                            <div id="forgot-password" class="pull-left">
+                                Forgot password?
+                            </div>
+                            <div id="login" class="pull-right">
+                                <input type="submit" value="LOG IN" class="btn btn-danger">
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                            <hr>
+                            <div id="sign-up">
+                                <h4>
+                                    NEED AN ACCOUNT?
+                                </h4>
+                                <h5>
+                                    <span class="glyphicon glyphicon-arrow-left">
+
+                                    </span>
+                                    <a href="" ng-click="vm.closeModal(true)">
+                                        SIGN ME UP
+                                    </a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
